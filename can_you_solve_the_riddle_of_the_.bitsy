@@ -1305,11 +1305,19 @@ I'm the sphinx. Answer my riddle!{pg}I am a bar, but I serve no drinks. I give y
     {win_check = win_check + 1}
 }{
   - {win_check == 0} ?
-    Pick your letters!
-  - win_check == 5 ?
-     Great work! {exit "2" 9 9}
-  - current_slot == 5 ?
-     Wrong!{exit "1" 9 13}
+    {
+      - {current_slot ==  < 5} ?
+        Pick your letters!
+    }
+}{
+  - {win_check == 5} ?
+    Great work! {exit "2" 9 9}
+}{
+  - {win_check == 0} ?
+    {
+      - {current_slot == 5} ?
+        Wrong!{exit "1" 9 13}
+    }
 }
 """
 NAME sphinx riddle
